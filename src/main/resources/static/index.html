@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Manager</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="header-title">🎬 Movie Manager</h1>
+            <p class="header-subtitle">Sistema CRUD &mdash; Spring Boot + MySQL + Docker</p>
+        </header>
+
+        <main>
+            <section class="card form-card">
+                <h2 class="card-title" id="form-title">Agregar Película</h2>
+                <form id="movie-form" class="movie-form">
+                    <input type="hidden" id="movie-id">
+                    <div class="form-group">
+                        <label for="titulo">Título</label>
+                        <input type="text" id="titulo" placeholder="Nombre de la película" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="director">Director</label>
+                        <input type="text" id="director" placeholder="Nombre del director" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="anio">Año</label>
+                        <input type="number" id="anio" placeholder="Año de estreno" min="1888" max="2100" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="btn-submit">
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 5v14M5 12h14"/>
+                            </svg>
+                            Agregar
+                        </button>
+                        <button type="button" class="btn btn-accent" id="btn-update" style="display:none;">
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"/>
+                                <path d="M18 2l4 4-10 10H8v-4L18 2z"/>
+                            </svg>
+                            Actualizar
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="btn-clear">
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6h14"/>
+                            </svg>
+                            Limpiar
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="card table-card">
+                <h2 class="card-title">Películas Registradas</h2>
+                <div class="table-wrapper">
+                    <table id="movies-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Título</th>
+                                <th>Director</th>
+                                <th>Año</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="movies-tbody">
+                        </tbody>
+                    </table>
+                </div>
+                <div id="empty-state" class="empty-state" style="display:none;">
+                    <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                    </svg>
+                    <p>No hay películas registradas.</p>
+                    <p class="text-secondary">Usa el formulario para agregar la primera.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <div id="confirm-dialog" class="confirm-overlay" style="display:none;">
+        <div class="confirm-dialog">
+            <p class="confirm-message">¿Estás seguro de eliminar esta película?</p>
+            <div class="confirm-actions">
+                <button class="btn btn-secondary" id="confirm-cancel">Cancelar</button>
+                <button class="btn btn-danger" id="confirm-delete">Eliminar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
